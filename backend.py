@@ -77,7 +77,7 @@ def sell_stock(team_name, company, quantity, round_no):
         df.loc[df["team_name"] == team_name, company] -= quantity
         df.loc[df["team_name"] == team_name, "Cash"] += quantity * current_price
         df.to_csv(HOLDINGS_FILE, index=False)
-        record_trade(team_id, round_no, company, "SELL", quantity, current_price)
+        record_trade(team_name, round_no, company, "SELL", quantity, current_price)
         return True
 
     return False

@@ -1,5 +1,9 @@
 from pathlib import Path
 import json
+import pandas as pd
+
+HOLDINGS_FILE = DATA_DIR / "holdings.csv"
+TRADES_FILE = DATA_DIR / "trades.csv"
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -61,4 +65,21 @@ def trading_status():
 
 
 def reset_game():
+    # Reset game state
     save_state(DEFAULT_STATE.copy())
+
+    # Reset holdings
+    holdings = pd.read_csv(HOLDINGS_FILE)
+
+    holdings["Cash"] = 10000
+
+    for column in holdings.columns:
+        if column not in ["Team", "team_name", "Cash"]:
+            holdings[column] = 0
+
+    holdings.to_csv(HOLDINGS_FILE, index=False)
+
+    # Clear trade history while preserving headers
+    trades = pd.read_csv(TRADES_FILE)
+    trades = trades.iloc[0:0]
+    trades.to_csv(TRADES_FILE, index=False)

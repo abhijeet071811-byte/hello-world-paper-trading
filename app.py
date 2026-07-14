@@ -6,18 +6,12 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📈 Fin Club Paper Trading Challenge")
+st.title("📈 Fin Club Paper Trading")
 
-st.markdown("---")
+st.markdown(
+"""
+Welcome to the Paper Trading Challenge.
 
-st.header("Rules")
-
-st.markdown("""
-- Every team starts with **₹10,000**
-- Each round a news headline will be shown.
-- Based on the news, buy/sell stocks.
-- Trading closes after each round.
-- Highest portfolio value after all rounds wins.
-""")
-
-st.info("Use the sidebar to open the Trading page.")
+Use the sidebar to open the Trading page.
+"""
+)
